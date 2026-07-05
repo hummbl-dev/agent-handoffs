@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "agent-handoffs/v0.1",
+  "packetStatus": "issued",
+  "handoffManifest": {
+    "id": "handoff-0001",
+    "title": "Triage incoming bug report",
+    "version": "1",
+    "scope": "single-task triage of one bug report"
+  },
+  "authority": {
+    "issuer": "ops-oncall-1",
+    "issuerType": "human",
+    "basis": "on-call rotation grant for triage queue"
+  },
+  "handoffContract": {
+    "fromAgent": {
+      "id": "ops-oncall-1",
+      "type": "human",
+      "name": "On-call Engineer"
+    },
+    "toAgent": {
+      "id": "triage-bot-1",
+      "type": "agent",
+      "name": "Triage Bot"
+    },
+    "contextEnvelope": {
+      "objective": "Triage bug report BUG-123: reproduce, classify severity, route.",
+      "inScope": [
+        "Reproduce BUG-123 on staging",
+        "Assign a severity label",
+        "Route to the owning team"
+      ],
+      "outOfScope": [
+        "Implementing a fix",
+        "Merging any change"
+      ],
+      "constraints": [
+        "Do not modify production",
+        "Post findings back to the triage queue"
+      ],
+      "priorContext": [
+        {
+          "ref": "https://example.invalid/bugs/BUG-123",
+          "kind": "bug-report"
+        }
+      ]
+    },
+    "delegationScope": {
+      "grantedAuthority": [
+        "read staging environment",
+        "label issues in triage queue"
+      ],
+      "limits": [
+        "read-only access to staging",
+        "no production access",
+        "no merge access"
+      ]
+    },
+    "expiry": "2025-12-31T23:59:59Z",
+    "receiptChain": [
+      {
+        "hop": 0,
+        "actor": "ops-oncall-1",
+        "action": "issued handoff packet",
+        "at": "2025-07-04T20:00:00Z",
+        "ref": "receipts/agent-handoffs-v0.1-packet-receipt.md"
+      }
+    ]
+  },
+  "receiptRequirements": {
+    "acknowledgeBy": "2025-07-04T20:30:00Z",
+    "produce": [
+      "acknowledgement receipt",
+      "severity label for BUG-123",
+      "routing decision with rationale"
+    ]
+  }
+}
