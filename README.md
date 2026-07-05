@@ -1,6 +1,6 @@
 # Agent Handoffs
 
-$(System.Collections.Hashtable.Name) is a public seed repository for agent handoffs.
+Agent Handoffs is a public seed repository for agent handoffs.
 
 ## Purpose
 
