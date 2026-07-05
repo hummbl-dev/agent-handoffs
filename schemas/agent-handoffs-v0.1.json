@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hummbl-dev.github.io/agent-handoffs/schemas/agent-handoffs-v0.1.json",
+  "title": "Agent Handoffs Packet v0.1",
+  "description": "Candidate schema for a single agent handoff packet. Non-canon. See docs/v0.1-boundary.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packetStatus",
+    "handoffManifest",
+    "authority",
+    "handoffContract",
+    "receiptRequirements"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "agent-handoffs/v0.1"
+    },
+    "packetStatus": {
+      "type": "string",
+      "enum": ["draft", "issued", "accepted", "rejected", "expired"]
+    },
+    "handoffManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "version", "scope"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issuer", "issuerType", "basis"],
+      "properties": {
+        "issuer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issuerType": {
+          "type": "string",
+          "enum": ["human", "agent", "system"]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "handoffContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fromAgent",
+        "toAgent",
+        "contextEnvelope",
+        "delegationScope",
+        "expiry",
+        "receiptChain"
+      ],
+      "properties": {
+        "fromAgent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "type": { "type": "string", "enum": ["human", "agent", "system"] },
+            "name": { "type": "string" }
+          }
+        },
+        "toAgent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "type"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "type": { "type": "string", "enum": ["human", "agent", "system"] },
+            "name": { "type": "string" }
+          }
+        },
+        "contextEnvelope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["objective", "inScope", "outOfScope", "constraints"],
+          "properties": {
+            "objective": { "type": "string", "minLength": 1 },
+            "inScope": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1
+            },
+            "outOfScope": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "constraints": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "priorContext": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["ref", "kind"],
+                "properties": {
+                  "ref": { "type": "string", "minLength": 1 },
+                  "kind": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        },
+        "delegationScope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["grantedAuthority", "limits"],
+          "properties": {
+            "grantedAuthority": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1
+            },
+            "limits": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "expiry": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "receiptChain": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["hop", "actor", "action", "at"],
+            "properties": {
+              "hop": { "type": "integer", "minimum": 0 },
+              "actor": { "type": "string", "minLength": 1 },
+              "action": { "type": "string", "minLength": 1 },
+              "at": { "type": "string", "format": "date-time" },
+              "ref": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "receiptRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acknowledgeBy", "produce"],
+      "properties": {
+        "acknowledgeBy": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "produce": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

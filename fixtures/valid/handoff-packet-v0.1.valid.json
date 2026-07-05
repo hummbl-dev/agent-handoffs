@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "agent-handoffs/v0.1",
+  "packetStatus": "issued",
+  "handoffManifest": {
+    "id": "handoff-fixture-valid-0001",
+    "title": "Valid fixture handoff",
+    "version": "1",
+    "scope": "valid fixture demonstrating a conformant v0.1 packet"
+  },
+  "authority": {
+    "issuer": "fixture-issuer",
+    "issuerType": "agent",
+    "basis": "fixture test authority"
+  },
+  "handoffContract": {
+    "fromAgent": {
+      "id": "fixture-from",
+      "type": "agent",
+      "name": "Fixture Source Agent"
+    },
+    "toAgent": {
+      "id": "fixture-to",
+      "type": "agent",
+      "name": "Fixture Target Agent"
+    },
+    "contextEnvelope": {
+      "objective": "Demonstrate a valid v0.1 handoff packet.",
+      "inScope": [
+        "Validate against schemas/agent-handoffs-v0.1.json"
+      ],
+      "outOfScope": [
+        "Anything outside fixture validation"
+      ],
+      "constraints": [
+        "Fixture only; no real authority granted"
+      ]
+    },
+    "delegationScope": {
+      "grantedAuthority": [
+        "run fixture validation"
+      ],
+      "limits": [
+        "no external side effects"
+      ]
+    },
+    "expiry": "2025-12-31T23:59:59Z",
+    "receiptChain": [
+      {
+        "hop": 0,
+        "actor": "fixture-issuer",
+        "action": "issued fixture packet",
+        "at": "2025-07-04T20:00:00Z"
+      }
+    ]
+  },
+  "receiptRequirements": {
+    "acknowledgeBy": "2025-07-04T20:30:00Z",
+    "produce": [
+      "fixture acknowledgement"
+    ]
+  }
+}
