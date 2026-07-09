@@ -122,3 +122,4 @@ Validation: markdown-only change; no package behavior changed.
 - Kept the example candidate/non-canon.
 - Did not modify operator-authority surfaces.
 - Did not introduce new HUMMBL/BaseN terminology.
+- Draft PR: https://github.com/example-org/example-repo/pull/42
