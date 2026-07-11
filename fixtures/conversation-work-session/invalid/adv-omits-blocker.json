@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-004",
+  "workstreamId": "ws-adv-004",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "agent", "posture": "agent"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Fix GitHub issues",
+  "outcomeLedger": [
+    {"item": "All issues resolved", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "No further action needed — everything is complete", "blockers": []}
+  ],
+  "capabilityGapLedger": [],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "No action needed, all work is complete",
+    "minimumReferences": []
+  },
+  "_adv_expected_failure": "Omits known blocker (CI is failing on PR #170) while claiming ready-to-resume; outcomeLedger claims all issues resolved but PR #170 CI is red"
+}

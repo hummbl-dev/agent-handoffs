@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-006",
+  "workstreamId": "ws-adv-006",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Research session",
+  "outcomeLedger": [
+    {"item": "Research completed", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "The model said this approach is better", "posture": "USER_DECISION"}
+  ],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Implement the approach the model recommended", "blockers": []}
+  ],
+  "capabilityGapLedger": [],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Implement the approach that was recommended",
+    "minimumReferences": []
+  },
+  "_adv_expected_failure": "Loses model/provider/source correlation — 'the model said' without identifying which model, provider, or source; MODEL_INFERENCE posture should be used, not USER_DECISION"
+}

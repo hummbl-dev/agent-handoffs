@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-003",
+  "workstreamId": "ws-partial-capability-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-session-ghi789",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T18:00:00Z",
+  "expiry": "2026-07-22T18:00:00Z",
+  "sessionObjective": "Draft governance policy for agent memory retention",
+  "outcomeLedger": [
+    {"item": "Policy draft outlined", "status": "COMPLETED"},
+    {"item": "Policy document created in repo", "status": "UNVERIFIED", "ownerOrHome": "unknown"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Memory retention should be 90 days for operational data", "posture": "RECOMMENDATION"},
+    {"statement": "User prefers 60-day retention", "posture": "USER_REPORTED_FACT"}
+  ],
+  "artifactLedger": [
+    {"kind": "document", "destinationClassification": "internal", "reference": "unknown:policy-draft-not-saved", "artifactState": "NOT_CREATED", "confirmationEvidence": "no-evidence", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Create the memory retention policy document in docs/governance/ with 60-day retention per user preference, then commit to a branch", "blockers": ["document was not saved to any durable surface"], "requiredApproval": "operator"}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "local_git_state", "status": "UNAVAILABLE", "notes": "ChatGPT has no Git access"},
+    {"capability": "bus_post", "status": "UNAVAILABLE"},
+    {"capability": "filesystem_write", "status": "UNAVAILABLE"},
+    {"capability": "memory_write", "status": "UNAVAILABLE"},
+    {"capability": "in_chat_preservation", "status": "PASS", "evidenceReference": "this handoff packet"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["policy draft context"],
+    "authorityGranted": [],
+    "authorityWithheld": ["all write authority"],
+    "actionsRequiringFreshConfirmation": ["creating any document"],
+    "publicPrivateDisclosureRestrictions": "internal only"
+  },
+  "resumeToken": {
+    "firstNextAction": "Create docs/governance/memory-retention-policy.md with 60-day retention for operational data and 1-year for audit logs, based on the outline in this handoff",
+    "minimumReferences": ["this handoff packet"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-003"
+}

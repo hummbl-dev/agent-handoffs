@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hummbl-dev.github.io/agent-handoffs/schemas/conversation-work-session-handoff-profile-v0.1.json",
+  "title": "Conversation/Work-Session Handoff Profile v0.1",
+  "description": "Additive profile for ChatGPT chats and connected work sessions. References agent-handoffs-v0.1 via handoffManifest.id. Non-canon.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "profile",
+    "handoffId",
+    "workstreamId",
+    "sourcePlatform",
+    "senderIdentity",
+    "intendedReceiver",
+    "created",
+    "sessionObjective",
+    "outcomeLedger",
+    "decisionClaimLedger",
+    "artifactLedger",
+    "openWorkLedger",
+    "capabilityGapLedger",
+    "authorityContract",
+    "resumeToken"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "conversation-work-session-handoff-profile/v0.1"
+    },
+    "profile": {
+      "type": "string",
+      "enum": ["CHAT_CLOSEOUT_HANDOFF", "WORK_SESSION_CLOSEOUT_HANDOFF", "SESSION_CHECKPOINT_HANDOFF"]
+    },
+    "handoffId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workstreamId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identity for the workstream/session. Used for idempotency and supersession."
+    },
+    "sourcePlatform": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sessionReference": {
+      "type": "string",
+      "description": "Reference to the source conversation/work session, when safely available."
+    },
+    "senderIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "posture"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["human", "agent", "mixed"]
+        },
+        "posture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agentName": {
+          "type": "string"
+        }
+      }
+    },
+    "intendedReceiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding"],
+      "properties": {
+        "binding": {
+          "type": "string",
+          "enum": ["named_actor", "role_class", "next_authorized_session", "unbound_future"]
+        },
+        "reference": {
+          "type": "string",
+          "description": "Named actor, role, or session reference. Empty for unbound_future."
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiry": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersessionReferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "supersedes": {
+          "type": "string",
+          "description": "handoffId of the prior handoff this one supersedes."
+        },
+        "supersededBy": {
+          "type": "string",
+          "description": "handoffId of a newer handoff that supersedes this one."
+        }
+      }
+    },
+    "sessionObjective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outcomeLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "status"],
+        "properties": {
+          "item": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": ["COMPLETED", "IN_PROGRESS", "BLOCKED", "REVERSED_OR_REJECTED", "UNVERIFIED"]
+          },
+          "ownerOrHome": {
+            "type": "string"
+          },
+          "artifactReferences": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "decisionClaimLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statement", "posture"],
+        "properties": {
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "posture": {
+            "type": "string",
+            "enum": [
+              "USER_DECISION",
+              "ORGANIZATION_DECISION",
+              "EXTERNALLY_VERIFIED_FACT",
+              "USER_REPORTED_FACT",
+              "LOCAL_EXECUTION_EVIDENCE",
+              "RECOMMENDATION",
+              "CANDIDATE_TERM",
+              "HYPOTHESIS",
+              "MODEL_INFERENCE",
+              "UNRESOLVED_DISAGREEMENT"
+            ]
+          },
+          "evidenceReference": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifactLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "destinationClassification", "reference", "artifactState", "receiverMayMutate"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "destinationClassification": {
+            "type": "string",
+            "enum": ["public", "private", "internal", "chat_only"]
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifactState": {
+            "type": "string",
+            "enum": ["CONFIRMED", "UNCONFIRMED", "FAILED", "NOT_CREATED"]
+          },
+          "confirmationEvidence": {
+            "type": "string"
+          },
+          "receiverMayMutate": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "openWorkLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["nextRecommendedAction"],
+        "properties": {
+          "nextRecommendedAction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependencyOrder": {
+            "type": "string"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "requiredApproval": {
+            "type": "string"
+          },
+          "stopConditions": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "dueOrExpiryDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "ownerOrReceiverRole": {
+            "type": "string"
+          },
+          "mustNotDo": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "capabilityGapLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["capability", "status"],
+        "properties": {
+          "capability": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PASS", "FAIL", "NOT_APPLICABLE", "UNAVAILABLE", "DECLINED"]
+          },
+          "evidenceReference": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "authorityContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contextTransferred", "authorityGranted", "authorityWithheld"],
+      "properties": {
+        "contextTransferred": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "authorityGranted": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "authorityWithheld": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "expiredOrRevokedDelegation": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "actionsRequiringFreshConfirmation": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "publicPrivateDisclosureRestrictions": {
+          "type": "string"
+        }
+      }
+    },
+    "resumeToken": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["firstNextAction", "minimumReferences"],
+      "properties": {
+        "firstNextAction": {
+          "type": "string",
+          "minLength": 1,
+          "minLength": 10,
+          "description": "Must be a specific, bounded action. Vague instructions like 'continue the work' are invalid."
+        },
+        "minimumReferences": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "v1PacketReference": {
+      "type": "string",
+      "description": "Reference to the agent-handoffs-v0.1 packet this profile extends."
+    }
+  }
+}

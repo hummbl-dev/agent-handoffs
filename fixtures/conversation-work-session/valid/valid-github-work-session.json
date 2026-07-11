@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-002",
+  "workstreamId": "ws-github-issues-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-work-session-def456",
+  "senderIdentity": {"type": "agent", "posture": "agent_with_user_oversight", "agentName": "chatgpt-work"},
+  "intendedReceiver": {"binding": "named_actor", "reference": "codex"},
+  "created": "2026-07-15T16:00:00Z",
+  "expiry": "2026-07-22T16:00:00Z",
+  "sessionObjective": "Triage and fix 5 GitHub issues in hummbl-dev/hummbl-dev",
+  "outcomeLedger": [
+    {"item": "Issue #140 triaged", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#140"]},
+    {"item": "Issue #141 triaged", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#141"]},
+    {"item": "PR #170 created for #139", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#170"]},
+    {"item": "Issue #142 in progress", "status": "IN_PROGRESS", "ownerOrHome": "hummbl-dev/hummbl-dev"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Issue #140 requires Frontier Lab Classification framework", "posture": "USER_DECISION"},
+    {"statement": "PR #170 was created and pushed", "posture": "LOCAL_EXECUTION_EVIDENCE", "evidenceReference": "hummbl-dev/hummbl-dev#170"},
+    {"statement": "Issue #142 should be split into 3 sub-tasks", "posture": "RECOMMENDATION"}
+  ],
+  "artifactLedger": [
+    {"kind": "issue", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#140", "artifactState": "CONFIRMED", "confirmationEvidence": "github-api-verified", "receiverMayMutate": true},
+    {"kind": "pull_request", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#170", "artifactState": "CONFIRMED", "confirmationEvidence": "github-api-verified", "receiverMayMutate": true},
+    {"kind": "issue", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#142", "artifactState": "CONFIRMED", "confirmationEvidence": "github-api-verified", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Complete issue #142 by creating the razors-for-governed-reasoning document with 15 entries", "blockers": [], "requiredApproval": "operator", "stopConditions": ["if the issue is closed by another agent"]},
+    {"nextRecommendedAction": "Review PR #170 for merge readiness", "blockers": ["CI must pass"], "requiredApproval": "operator"}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "github_read", "status": "PASS", "evidenceReference": "github-connector-active"},
+    {"capability": "github_write", "status": "PASS", "evidenceReference": "pr-170-created"},
+    {"capability": "local_git_state", "status": "UNAVAILABLE", "notes": "ChatGPT Work has no local Git"},
+    {"capability": "bus_post", "status": "UNAVAILABLE", "notes": "No bus access from ChatGPT Work"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["GitHub issue triage context", "PR creation history"],
+    "authorityGranted": ["read access to hummbl-dev/hummbl-dev"],
+    "authorityWithheld": ["merge authority", "delete authority", "force-push authority"],
+    "actionsRequiringFreshConfirmation": ["merging PRs", "closing issues"],
+    "publicPrivateDisclosureRestrictions": "public repo — all artifacts are public"
+  },
+  "resumeToken": {
+    "firstNextAction": "Create the razors-for-governed-reasoning-v0.1.md document in docs/reasoning/ with 15 entries per the schema in issue #142, then commit to a new branch",
+    "minimumReferences": ["hummbl-dev/hummbl-dev#142", "hummbl-dev/hummbl-dev#170"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-002"
+}

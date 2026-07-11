@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-009",
+  "workstreamId": "ws-adv-009",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Open-ended exploration",
+  "outcomeLedger": [
+    {"item": "Explored some things", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Continue the work", "blockers": []}
+  ],
+  "capabilityGapLedger": [],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Continue the work",
+    "minimumReferences": []
+  },
+  "_adv_expected_failure": "Vague next action ('continue the work') — does not specify what to do; minLength 10 is met but content is unbounded"
+}

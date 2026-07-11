@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-006",
+  "workstreamId": "ws-github-issues-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-work-session-def456-part2",
+  "senderIdentity": {"type": "agent", "posture": "agent_with_user_oversight", "agentName": "chatgpt-work"},
+  "intendedReceiver": {"binding": "named_actor", "reference": "codex"},
+  "created": "2026-07-15T17:00:00Z",
+  "expiry": "2026-07-22T17:00:00Z",
+  "supersessionReferences": {
+    "supersedes": "handoff-002"
+  },
+  "sessionObjective": "Triage and fix 5 GitHub issues in hummbl-dev/hummbl-dev (continued)",
+  "outcomeLedger": [
+    {"item": "Issue #140 triaged", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#140"]},
+    {"item": "Issue #141 triaged", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#141"]},
+    {"item": "PR #170 created for #139", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#170"]},
+    {"item": "Issue #142 completed", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#169"]},
+    {"item": "PR #169 created for #142", "status": "COMPLETED", "ownerOrHome": "hummbl-dev/hummbl-dev", "artifactReferences": ["hummbl-dev/hummbl-dev#169"]}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Issue #142 is complete with PR #169", "posture": "LOCAL_EXECUTION_EVIDENCE", "evidenceReference": "hummbl-dev/hummbl-dev#169"},
+    {"statement": "All 5 issues are now triaged or completed", "posture": "LOCAL_EXECUTION_EVIDENCE", "evidenceReference": "github-verified"}
+  ],
+  "artifactLedger": [
+    {"kind": "pull_request", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#169", "artifactState": "CONFIRMED", "confirmationEvidence": "github-api-verified", "receiverMayMutate": true},
+    {"kind": "pull_request", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#170", "artifactState": "CONFIRMED", "confirmationEvidence": "github-api-verified", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Review PRs #169 and #170 for merge readiness, then proceed to issue #143", "blockers": ["CI must pass on both PRs"], "requiredApproval": "operator"}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "github_read", "status": "PASS", "evidenceReference": "github-connector-active"},
+    {"capability": "github_write", "status": "PASS", "evidenceReference": "pr-169-created"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["GitHub issue triage context", "PR creation history"],
+    "authorityGranted": ["read access to hummbl-dev/hummbl-dev"],
+    "authorityWithheld": ["merge authority"],
+    "actionsRequiringFreshConfirmation": ["merging PRs"],
+    "publicPrivateDisclosureRestrictions": "public repo"
+  },
+  "resumeToken": {
+    "firstNextAction": "Check CI status on PRs #169 and #170 in hummbl-dev/hummbl-dev, then if green, request operator merge approval",
+    "minimumReferences": ["hummbl-dev/hummbl-dev#169", "hummbl-dev/hummbl-dev#170"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-006"
+}

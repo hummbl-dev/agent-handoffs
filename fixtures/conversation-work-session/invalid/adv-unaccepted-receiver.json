@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-008",
+  "workstreamId": "ws-adv-008",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "agent", "posture": "agent"},
+  "intendedReceiver": {"binding": "named_actor", "reference": "codex"},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "GitHub work",
+  "outcomeLedger": [
+    {"item": "Work done", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Continue the work", "blockers": []}
+  ],
+  "capabilityGapLedger": [],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Continue the work",
+    "minimumReferences": []
+  },
+  "_adv_expected_failure": "Names receiver 'codex' who did not accept the handoff; no acceptance evidence; resumeToken is vague ('continue the work')"
+}
