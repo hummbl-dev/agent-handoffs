@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-001",
+  "workstreamId": "ws-adv-001",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "agent", "posture": "agent"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Create issues in GitHub",
+  "outcomeLedger": [
+    {"item": "Issue created in GitHub", "status": "COMPLETED", "artifactReferences": ["hummbl-dev/hummbl-dev#999"]}
+  ],
+  "decisionClaimLedger": [],
+  "artifactLedger": [
+    {"kind": "issue", "destinationClassification": "public", "reference": "hummbl-dev/hummbl-dev#999", "artifactState": "CONFIRMED", "confirmationEvidence": "no-evidence", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Verify the issue was created", "blockers": []}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "github_write", "status": "UNAVAILABLE", "notes": "No GitHub write access"}
+  ],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all write authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Verify whether issue #999 actually exists in GitHub before proceeding",
+    "minimumReferences": ["hummbl-dev/hummbl-dev#999"]
+  },
+  "_adv_expected_failure": "Artifact marked CONFIRMED without confirmation evidence; capability shows UNAVAILABLE for github_write but artifact claims COMPLETED"
+}

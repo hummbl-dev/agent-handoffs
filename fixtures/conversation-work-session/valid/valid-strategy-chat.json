@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-001",
+  "workstreamId": "ws-strategy-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-session-abc123",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "expiry": "2026-07-22T14:00:00Z",
+  "sessionObjective": "Decide whether to pursue Series A in Q4 2026 or defer to Q1 2027",
+  "outcomeLedger": [
+    {"item": "Decision: defer Series A to Q1 2027", "status": "COMPLETED", "ownerOrHome": "operator"},
+    {"item": "Market analysis for Q4 2026 timing", "status": "COMPLETED"},
+    {"item": "Board communication plan", "status": "IN_PROGRESS", "ownerOrHome": "operator"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Defer Series A to Q1 2027", "posture": "USER_DECISION"},
+    {"statement": "Current market conditions favor waiting", "posture": "RECOMMENDATION"},
+    {"statement": "Q4 2026 VC deployment is down 20% YoY", "posture": "EXTERNALLY_VERIFIED_FACT", "evidenceReference": "external-report-url"}
+  ],
+  "artifactLedger": [
+    {"kind": "document", "destinationClassification": "private", "reference": "internal:strategy/series-a-timing.md", "artifactState": "CONFIRMED", "confirmationEvidence": "file-exists", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Draft board memo recommending Q1 2027 Series A timing with 3 bullet points on market rationale", "blockers": [], "requiredApproval": "operator", "stopConditions": ["if market conditions change materially"]}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "local_git_state", "status": "UNAVAILABLE", "notes": "ChatGPT session has no Git access"},
+    {"capability": "bus_post", "status": "UNAVAILABLE", "notes": "No bus access from ChatGPT"},
+    {"capability": "in_chat_preservation", "status": "PASS", "evidenceReference": "this handoff packet"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["strategy decision context"],
+    "authorityGranted": [],
+    "authorityWithheld": ["no write authority to any system"],
+    "actionsRequiringFreshConfirmation": ["any external communication about Series A timing"],
+    "publicPrivateDisclosureRestrictions": "private only — Series A timing is confidential"
+  },
+  "resumeToken": {
+    "firstNextAction": "Draft a 3-bullet board memo recommending Q1 2027 Series A timing, referencing the market analysis in internal:strategy/series-a-timing.md",
+    "minimumReferences": ["internal:strategy/series-a-timing.md"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-001"
+}

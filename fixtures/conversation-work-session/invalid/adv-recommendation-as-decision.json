@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-002",
+  "workstreamId": "ws-adv-002",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Strategy discussion",
+  "outcomeLedger": [
+    {"item": "Adopt new framework", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "The new framework should be adopted", "posture": "RECOMMENDATION"}
+  ],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Begin migration to the new framework immediately", "blockers": []}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "in_chat_preservation", "status": "PASS", "evidenceReference": "this handoff"}
+  ],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Begin migrating all repos to the new governance framework",
+    "minimumReferences": []
+  },
+  "_adv_expected_failure": "Recommendation posture is treated as a completed decision in outcomeLedger; no USER_DECISION exists for adoption"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-005",
+  "workstreamId": "ws-adv-005",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Prepare public blog post",
+  "outcomeLedger": [
+    {"item": "Blog post drafted", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "The company's Q4 revenue is $2.3M", "posture": "USER_REPORTED_FACT"},
+    {"statement": "The founder's personal health situation affected Q3 productivity", "posture": "USER_REPORTED_FACT"},
+    {"statement": "Internal strategy is to pivot to enterprise in 2027", "posture": "ORGANIZATION_DECISION"}
+  ],
+  "artifactLedger": [
+    {"kind": "document", "destinationClassification": "public", "reference": "blog:public-post.md", "artifactState": "CONFIRMED", "confirmationEvidence": "file-exists", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Publish the blog post with the revenue, health, and strategy details included", "blockers": []}
+  ],
+  "capabilityGapLedger": [],
+  "authorityContract": {
+    "contextTransferred": ["private financial data", "personal health information", "internal strategy"],
+    "authorityGranted": [],
+    "authorityWithheld": [],
+    "publicPrivateDisclosureRestrictions": "public — all content is in the public blog post"
+  },
+  "resumeToken": {
+    "firstNextAction": "Publish the blog post at blog:public-post.md which contains the Q4 revenue, founder health, and pivot strategy",
+    "minimumReferences": ["blog:public-post.md"]
+  },
+  "_adv_expected_failure": "Private transcript content (revenue, personal health, internal strategy) copied into a public packet; publicPrivateDisclosureRestrictions claims public but content is private"
+}

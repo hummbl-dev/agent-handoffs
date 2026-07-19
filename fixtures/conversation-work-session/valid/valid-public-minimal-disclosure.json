@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "WORK_SESSION_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-005",
+  "workstreamId": "ws-public-disclosure-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-session-mno345",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T22:00:00Z",
+  "expiry": "2026-08-15T22:00:00Z",
+  "sessionObjective": "Prepare public blog post about HUMMBL governance framework",
+  "outcomeLedger": [
+    {"item": "Blog post outline approved", "status": "COMPLETED"},
+    {"item": "Draft written", "status": "COMPLETED"},
+    {"item": "Internal review", "status": "IN_PROGRESS", "ownerOrHome": "operator"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Blog post should focus on governance primitives", "posture": "USER_DECISION"},
+    {"statement": "HUMMBL governance has 7 safety primitives", "posture": "EXTERNALLY_VERIFIED_FACT", "evidenceReference": "hummbl-governance-docs"},
+    {"statement": "The framework is production-ready", "posture": "CANDIDATE_TERM"},
+    {"statement": "Adoption strategy should target mid-stage startups", "posture": "RECOMMENDATION"}
+  ],
+  "artifactLedger": [
+    {"kind": "document", "destinationClassification": "public", "reference": "blog:hummbl-governance-overview.md", "artifactState": "CONFIRMED", "confirmationEvidence": "file-exists-in-blog-drafts", "receiverMayMutate": true},
+    {"kind": "document", "destinationClassification": "private", "reference": "internal:adoption-strategy.md", "artifactState": "CONFIRMED", "confirmationEvidence": "file-exists-internal", "receiverMayMutate": false}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Review the blog post draft at blog:hummbl-governance-overview.md for factual accuracy and remove any references to internal:adoption-strategy.md before publishing", "blockers": ["must not publish private content"], "requiredApproval": "operator", "stopConditions": ["if any private content is found in the public draft"], "mustNotDo": ["do not reference internal documents in the public blog post", "do not publish without operator approval"]}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "in_chat_preservation", "status": "PASS", "evidenceReference": "this handoff packet"},
+    {"capability": "public_artifact_verification", "status": "PASS", "evidenceReference": "blog-draft-file-exists"},
+    {"capability": "private_artifact_verification", "status": "PASS", "evidenceReference": "internal-file-exists"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["blog post context", "public-safe portions of adoption strategy"],
+    "authorityGranted": [],
+    "authorityWithheld": ["publish authority", "access to private adoption strategy"],
+    "actionsRequiringFreshConfirmation": ["publishing the blog post"],
+    "publicPrivateDisclosureRestrictions": "minimal-disclosure: public handoff excludes all private content; private references are by-path only, not content"
+  },
+  "resumeToken": {
+    "firstNextAction": "Read blog:hummbl-governance-overview.md and verify no private content from internal:adoption-strategy.md is referenced, then prepare for operator review",
+    "minimumReferences": ["blog:hummbl-governance-overview.md"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-005"
+}

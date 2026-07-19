@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "adv-010",
+  "workstreamId": "ws-adv-010",
+  "sourcePlatform": "chatgpt",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T14:00:00Z",
+  "sessionObjective": "Draft policy",
+  "outcomeLedger": [
+    {"item": "Policy saved to repo", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [],
+  "artifactLedger": [
+    {"kind": "document", "destinationClassification": "internal", "reference": "repo:docs/policy.md", "artifactState": "CONFIRMED", "confirmationEvidence": "agent-claims-saved", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Review the saved policy document", "blockers": []}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "filesystem_write", "status": "UNAVAILABLE", "notes": "No filesystem access from ChatGPT"},
+    {"capability": "local_git_state", "status": "UNAVAILABLE"},
+    {"capability": "artifact_verification", "status": "PASS", "evidenceReference": "agent-claims-saved"}
+  ],
+  "authorityContract": {
+    "contextTransferred": [],
+    "authorityGranted": [],
+    "authorityWithheld": ["all write authority"]
+  },
+  "resumeToken": {
+    "firstNextAction": "Verify that docs/policy.md exists in the repo before reviewing it",
+    "minimumReferences": ["repo:docs/policy.md"]
+  },
+  "_adv_expected_failure": "Treats unavailable capability (filesystem_write) as if artifact was saved; artifact marked CONFIRMED but filesystem_write is UNAVAILABLE and artifact_verification PASS has no real evidence"
+}

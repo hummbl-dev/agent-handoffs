@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "CHAT_CLOSEOUT_HANDOFF",
+  "handoffId": "handoff-007",
+  "workstreamId": "ws-exploration-2026-07-15",
+  "sourcePlatform": "chatgpt",
+  "sessionReference": "chatgpt-session-pqr678",
+  "senderIdentity": {"type": "mixed", "posture": "user_and_assistant"},
+  "intendedReceiver": {"binding": "unbound_future", "reference": ""},
+  "created": "2026-07-15T23:00:00Z",
+  "expiry": "2026-08-15T23:00:00Z",
+  "sessionObjective": "Explore whether HUMMBL should adopt a new governance framework",
+  "outcomeLedger": [
+    {"item": "Framework comparison drafted", "status": "COMPLETED"},
+    {"item": "No decision made — exploration only", "status": "COMPLETED"}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "The new framework has interesting ideas about multi-stakeholder governance", "posture": "RECOMMENDATION"},
+    {"statement": "Adoption would require significant migration effort", "posture": "HYPOTHESIS"},
+    {"statement": "No decision to adopt has been made", "posture": "USER_DECISION"}
+  ],
+  "artifactLedger": [],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "If exploration continues, compare the new framework against HUMMBL's existing 7 primitives and document gaps; no action required if exploration is concluded", "blockers": [], "requiredApproval": "operator", "stopConditions": ["if operator decides not to pursue"]}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "in_chat_preservation", "status": "PASS", "evidenceReference": "this handoff packet"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["exploration context"],
+    "authorityGranted": [],
+    "authorityWithheld": ["all authority — this is exploration only"],
+    "actionsRequiringFreshConfirmation": ["any action beyond reading"],
+    "publicPrivateDisclosureRestrictions": "internal only"
+  },
+  "resumeToken": {
+    "firstNextAction": "If continuing exploration, read the framework comparison in this handoff and compare against hummbl-governance primitives; otherwise no action needed",
+    "minimumReferences": ["this handoff packet"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-007"
+}

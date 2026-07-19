@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "conversation-work-session-handoff-profile/v0.1",
+  "profile": "SESSION_CHECKPOINT_HANDOFF",
+  "handoffId": "handoff-004",
+  "workstreamId": "ws-research-session-2026-07-15",
+  "sourcePlatform": "claude-code",
+  "sessionReference": "claude-code-session-jkl012",
+  "senderIdentity": {"type": "agent", "posture": "agent_session_interrupted", "agentName": "claude-code"},
+  "intendedReceiver": {"binding": "next_authorized_session", "reference": "next-claude-code-session"},
+  "created": "2026-07-15T20:00:00Z",
+  "expiry": "2026-07-16T20:00:00Z",
+  "sessionObjective": "Research and draft agent runtime governance spec for issue #12",
+  "outcomeLedger": [
+    {"item": "Schema drafted", "status": "IN_PROGRESS"},
+    {"item": "Fixtures created", "status": "IN_PROGRESS"},
+    {"item": "Validator written", "status": "BLOCKED", "ownerOrHome": "operator", "artifactReferences": ["agent-runtime-governance#12"]}
+  ],
+  "decisionClaimLedger": [
+    {"statement": "Schema should use JSON Schema Draft 2020-12", "posture": "USER_DECISION"},
+    {"statement": "Fixtures should include 3 valid and 4 adversarial cases", "posture": "RECOMMENDATION"}
+  ],
+  "artifactLedger": [
+    {"kind": "schema", "destinationClassification": "public", "reference": "agent-runtime-governance:docs/schemas/programmatic-tools/v0.1/schema.json", "artifactState": "UNCONFIRMED", "confirmationEvidence": "no-evidence-yet", "receiverMayMutate": true}
+  ],
+  "openWorkLedger": [
+    {"nextRecommendedAction": "Complete the validator script at agent-runtime-governance/docs/schemas/programmatic-tools/v0.1/validate.py and run test_validator.py", "blockers": ["session was interrupted before validator was written"], "requiredApproval": "operator", "stopConditions": ["if issue #12 is closed by another agent"]}
+  ],
+  "capabilityGapLedger": [
+    {"capability": "local_git_state", "status": "PASS", "evidenceReference": "git-status-clean"},
+    {"capability": "filesystem_write", "status": "PASS", "evidenceReference": "files-created"},
+    {"capability": "bus_post", "status": "DECLINED", "notes": "Not posted yet — session interrupted"}
+  ],
+  "authorityContract": {
+    "contextTransferred": ["schema design context", "fixture plans"],
+    "authorityGranted": ["write to feature branch"],
+    "authorityWithheld": ["merge authority", "push to main"],
+    "actionsRequiringFreshConfirmation": ["pushing to remote"],
+    "publicPrivateDisclosureRestrictions": "public repo"
+  },
+  "resumeToken": {
+    "firstNextAction": "Read the schema at agent-runtime-governance/docs/schemas/programmatic-tools/v0.1/schema.json and write validate.py that loads each fixture and validates against the schema, then run test_validator.py",
+    "minimumReferences": ["agent-runtime-governance#12", "agent-runtime-governance:docs/schemas/programmatic-tools/v0.1/schema.json"]
+  },
+  "v1PacketReference": "agent-handoffs-v0.1-packet-004"
+}
